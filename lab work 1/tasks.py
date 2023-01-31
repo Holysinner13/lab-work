@@ -67,6 +67,11 @@ for i in matrix:
 print('Максимальный элемент по главной диагонали', max(result2))
 
 
+"""Задание 6"""
+
+
+
+
 # import string
 #
 # sentence = 'i am@Python@senior^pomidor'

@@ -2,6 +2,9 @@ import numpy as np
 from random import randint
 
 
+"""Задание 4"""
+
+
 def calculate_pi(n=0):
     result = 3
     for i in range(n + 1):
@@ -14,6 +17,9 @@ def calculate_pi(n=0):
 
 for i in range(5):
     print(calculate_pi(i))
+
+
+"""Задание 5"""
 
 
 print('Загадай число от 1 до 100.')
@@ -31,6 +37,9 @@ while True:
     print('Ты загадал число -', number)
     break
 print('Угадал! Молодец!')
+
+
+"""Задание 6"""
 
 
 matrix = np.array([[randint(0, 10) for i in range(3)] for x in range(3)])

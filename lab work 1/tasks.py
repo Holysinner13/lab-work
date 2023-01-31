@@ -112,13 +112,16 @@ print('Максимальный элемент по главной диагон�
 """Задание 7"""
 
 
+def custom():
+    dict_name = {}
+
+    while True:
+        name = input('Введите имя кто пересекает границу (Если хотите завершить напишите END): ')
+        if name == 'END':
+            break
+        dict_name[name] = dict_name.get(name, 0) + 1
+
+    return [print(key, ':', value) for key, value in dict_name.items()]
 
 
-# import string
-#
-# sentence = 'i am@Python@senior^pomidor'
-# c = ''.join(c if c not in string.punctuation else ' ' for c in sentence)
-# s = ''.join(filter(lambda x: x not in string.punctuation, sentence))
-#
-# print(c)
-# print(s)
+custom()

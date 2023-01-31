@@ -2,6 +2,20 @@ import numpy as np
 from random import randint
 
 
+def calculate_pi(n=0):
+    result = 3
+    for i in range(n + 1):
+        if i:
+            delta = ((-1) ** (i + 1)) * 4 / (2 * i * (2 * i + 1) * (2 * i + 2))
+            print(delta)
+            result += delta
+    return result
+
+
+for i in range(5):
+    print(calculate_pi(i))
+
+
 print('Загадай число от 1 до 100.')
 start = 1
 finish = 100
@@ -42,3 +56,13 @@ for i in matrix:
     count += 1
 
 print('Максимальный элемент по главной диагонали', max(result2))
+
+
+# import string
+#
+# sentence = 'i am@Python@senior^pomidor'
+# c = ''.join(c if c not in string.punctuation else ' ' for c in sentence)
+# s = ''.join(filter(lambda x: x not in string.punctuation, sentence))
+#
+# print(c)
+# print(s)

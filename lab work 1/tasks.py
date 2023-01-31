@@ -2,6 +2,48 @@ import numpy as np
 from random import randint
 
 
+"""Задание 1"""
+
+
+def func(num):
+    if num % 2 == 0:
+        return f'Число {num} является четным'
+    return f'Число {num} является нечетным'
+
+
+print(func(6), '\n')
+
+
+"""Задание 2"""
+
+
+def camelcase(letter):
+    if letter.upper() == letter:
+        return f'Символ {letter} имеет верхний регистр'
+    return f'Символ {letter} имеет нижний регистр'
+
+
+print(camelcase('w'), '\n')
+
+
+"""Задание 3"""
+
+
+def get_price(price):
+    for i in range(1, 11):
+        print(f'Цена за {i} кг апельсин равна {i * price} тенге')
+
+    count = 1
+    while True:
+        print(f'Цена за {count} кг апельсин равна {count * price} тенге')
+        count += 1
+        if count == 11:
+            break
+
+
+get_price(50)
+print()
+
 """Задание 4"""
 
 
@@ -17,7 +59,7 @@ def calculate_pi(n=0):
 
 for i in range(5):
     print(calculate_pi(i))
-
+print()
 
 """Задание 5"""
 
@@ -36,7 +78,7 @@ while True:
   else:
     print('Ты загадал число -', number)
     break
-print('Угадал! Молодец!')
+print('Угадал! Молодец!', '\n')
 
 
 """Задание 6"""
@@ -64,10 +106,10 @@ for i in matrix:
     result2.append(i[count])
     count += 1
 
-print('Максимальный элемент по главной диагонали', max(result2))
+print('Максимальный элемент по главной диагонали', max(result2), '\n')
 
 
-"""Задание 6"""
+"""Задание 7"""
 
 
 

@@ -1,3 +1,7 @@
+import string
+import random
+
+
 """Задание 1"""
 
 
@@ -83,7 +87,7 @@ def fac(n):
     for i in range(2, n + 1):
         result *= i
 
-    return result
+    return f'Факториал числа {n} = {result}'
 
 
 print(fac(5))
@@ -95,13 +99,29 @@ def fac(n):
     return fac(n - 1) * n
 
 
-print(fac(6))
+print(f'Факториал числа =', fac(6))
+print()
 
 
 """Задание 4"""
 
 
+new_list = map(lambda y: y + random.random(), filter(lambda x: not x % 2, list(range(10))))
+
+print(list(new_list))
+print()
+
+
 """Задание 5"""
+
+
+sentence = 'i am@Python@senior^pomidor'
+c = ''.join(c if c not in string.punctuation else ' ' for c in sentence)
+s = ''.join(filter(lambda x: x not in string.punctuation, sentence))
+
+print(c)
+print(s)
+print()
 
 
 """Задание 6"""

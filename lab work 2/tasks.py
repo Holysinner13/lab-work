@@ -1,5 +1,8 @@
 import string
 import random
+import re
+import functools
+import json
 
 
 """Задание 1"""
@@ -99,7 +102,7 @@ def fac(n):
     return fac(n - 1) * n
 
 
-print(f'Факториал числа =', fac(6))
+print(f'Факториал числа 6 =', fac(6))
 print()
 
 
@@ -118,13 +121,37 @@ print()
 sentence = 'i am@Python@senior^pomidor'
 c = ''.join(c if c not in string.punctuation else ' ' for c in sentence)
 s = ''.join(filter(lambda x: x not in string.punctuation, sentence))
+d = re.sub(r'[\W]', ' ', sentence)
+
 
 print(c)
 print(s)
+print(d)
 print()
 
 
 """Задание 6"""
 
 
+some_list = [(1, 1, 1), (1, 2, 3), (-1, -1, 7), (-3, -2, 8), (0, 0, 0), (3, -4, -5)]
+
+print('Отсортированный список по сумме кортежей -', sorted(some_list, key=sum))
+print('Отсортированный список по третьим элементам из кортежей -', sorted(some_list, key=lambda x: x[2]))
+
+some_dict = {'b': 3, 'c': 2, 'a': 4, 'd': 1}
+print(*sorted(some_dict.keys()))
+new_dict = {i: some_dict[i] for i in sorted(some_dict, key=some_dict.get)}
+print(*new_dict.keys())
+
+
 """Задание 7"""
+
+
+def func_json(func):
+
+    @functools.wraps(func)
+    def wrapped(*args, **kwargs):
+        result = func(*args, **kwargs)
+        return json.dumps(result)
+
+    return wrapped

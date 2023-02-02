@@ -1,7 +1,10 @@
 from random import randint
-
+from main import logger
+from time import sleep
 
 """Задание 5"""
+logger.info('Выполнение задания 5...')
+sleep(2)
 
 
 name = input('Введите свое имя: ')
@@ -22,3 +25,5 @@ while True:
     else:
         print(f'Ошибка. Ваша попытка № {attempt} неверна. Подсказка: задуманное число больше {user_answer}.')
         attempt += 1
+
+print()

@@ -1,4 +1,10 @@
+from main import logger
+from time import sleep
+
+
 """Задание 1"""
+logger.info('Выполнение задания 1...')
+sleep(2)
 
 
 class BankAccount:
@@ -7,22 +13,3 @@ class BankAccount:
         self.account_number = account_number
         self.name = name
         self.balance = balance
-
-
-
-
-"""Задание 2"""
-
-
-
-
-
-"""Задание 3"""
-
-
-
-
-
-"""Задание 4"""
-
-

@@ -1,4 +1,10 @@
+from main import logger
+from time import sleep
+
+
 """Задание 1"""
+logger.info('Выполнение задания 1...')
+sleep(2)
 
 
 def func(num):
@@ -7,4 +13,4 @@ def func(num):
     return f'Число {num} является нечетным'
 
 
-print(func(6))
+print(func(6), '\n')

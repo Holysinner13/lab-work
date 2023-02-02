@@ -1,4 +1,10 @@
+from main import logger
+from time import sleep
+
+
 """Задание 3"""
+logger.info('Выполнение задания 3...')
+sleep(2)
 
 
 def fac(n):
@@ -19,4 +25,4 @@ def fac(n):
     return fac(n - 1) * n
 
 
-print(f'Факториал числа 6 =', fac(6))
+print(f'Факториал числа 6 =', fac(6), '\n')

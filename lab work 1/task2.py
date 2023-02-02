@@ -1,4 +1,10 @@
+from main import logger
+from time import sleep
+
+
 """Задание 2"""
+logger.info('Выполнение задания 2...')
+sleep(2)
 
 
 def camelcase(letter):
@@ -7,4 +13,4 @@ def camelcase(letter):
     return f'Символ {letter} имеет нижний регистр'
 
 
-print(camelcase('w'))
+print(camelcase('w'), '\n')

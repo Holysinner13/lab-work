@@ -1,7 +1,12 @@
 import random
 import numpy as np
+from main import logger
+from time import sleep
+
 
 """Задание 6"""
+logger.info('Выполнение задания 6...')
+sleep(2)
 
 
 # matrix = np.array([[randint(0, 10) for i in range(3)] for x in range(3)])
@@ -27,4 +32,4 @@ for i in matrix:
     result2.append(i[count])
     count += 1
 
-print('Максимальный элемент по главной диагонали', max(result2))
+print('Максимальный элемент по главной диагонали', max(result2), '\n')

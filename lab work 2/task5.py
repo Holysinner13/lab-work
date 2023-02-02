@@ -1,7 +1,12 @@
 import re
 import string
+from main import logger
+from time import sleep
+
 
 """Задание 5"""
+logger.info('Выполнение задания 5...')
+sleep(2)
 
 
 sentence = 'i am@Python@senior^pomidor'
@@ -14,3 +19,4 @@ d = re.sub(r'[\W]', ' ', sentence)
 print(c)
 print(s)
 print(d)
+print()

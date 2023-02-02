@@ -1,8 +1,12 @@
 import json
 import functools
+from main import logger
+from time import sleep
 
 
 """Задание 7"""
+logger.info('Выполнение задания 7...')
+sleep(2)
 
 
 def func_json(func):
@@ -13,3 +17,5 @@ def func_json(func):
         return json.dumps(result)
 
     return wrapped
+
+print()

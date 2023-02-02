@@ -1,4 +1,10 @@
+from main import logger
+from time import sleep
+
+
 """Задание 7"""
+logger.info('Выполнение задания 7...')
+sleep(2)
 
 
 def custom():
@@ -14,3 +20,4 @@ def custom():
 
 
 custom()
+print()

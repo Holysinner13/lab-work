@@ -1,4 +1,10 @@
+from main import logger
+from time import sleep
+
+
 """Задание 3"""
+logger.info('Выполнение задания 3...')
+sleep(2)
 
 
 def get_price(price):
@@ -12,3 +18,4 @@ def get_price(price):
 
 
 get_price(50)
+print()

@@ -8,6 +8,11 @@ sleep(2)
 
 
 def fac(n):
+    """
+    Функция, возвращающая факториал числа
+    :param n: число
+    :return: None
+    """
     result = 1
 
     for i in range(2, n + 1):

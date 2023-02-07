@@ -17,6 +17,7 @@ class BankAccount:
         :param account_number: номер аккаунта владельца
         :param name: имя владельца счета в виде строкового типа
         :param balance: баланс владельца счета
+        :return
         """
         self.account_number = account_number
         self.name = name

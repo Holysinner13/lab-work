@@ -6,6 +6,7 @@ from time import sleep
 logger.info('Выполнение задания 4...')
 sleep(2)
 
+
 def calculate_pi(n=0):
     result = 3
     for i in range(n + 1):

@@ -9,6 +9,7 @@ logger.info('Выполнение задания 5...')
 sleep(2)
 
 
+print('Произвести рефакторинг программы')
 sentence = 'i am@Python@senior^pomidor'
 c = ''.join(c if c not in string.punctuation else ' ' for c in sentence)
 s = ''.join(filter(lambda x: x not in string.punctuation, sentence))

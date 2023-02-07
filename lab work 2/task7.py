@@ -10,6 +10,7 @@ sleep(2)
 
 
 def func_json(func):
+    """Декоратор, который модифицирует функцию таким образом, что результат ее выполнения возвращается в формате json"""
 
     @functools.wraps(func)
     def wrapped(*args, **kwargs):
@@ -18,4 +19,5 @@ def func_json(func):
 
     return wrapped
 
-print()
+
+print(func_json.__doc__)

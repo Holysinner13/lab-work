@@ -48,17 +48,30 @@ class Copulation:
 
         return f'Простые числа в диапазоне от {num1} до {num2} - {simple_num}'
 
-    def table_mult(self):
+    def table_mult(self, num):
         """Метод, который создает и отображает таблицу умножения заданного целого числа"""
+        print(f'Таблица умножения числа {num}')
+        for i in range(1, 11):
+            print(num, 'x', i, '=', num * i)
 
     def all_table_mult(self):
         """Метод для отображения всех таблиц целочисленного умножения"""
+        print('Таблица умножения всех чисел от 1 до 9')
+        for i in range(1, 10):
+            print(*range(i, i * 10, i), sep='\t')
 
-    def list_div(self):
+    def list_div(self, num):
         """Метод, который получает все делители заданного числа в новом списке с именем Ldiv"""
+        ldiv = [i for i in range(2, num + 1) if num % i == 0]
 
-    def list_div_prim(self):
+        return ldiv
+
+    def list_div_prim(self, num):
         """Метод, который получает все простые делители заданного целого числа"""
+        result = list(filter(lambda x: all(map(lambda i: x % i != 0, range(2, int(x ** 0.5) + 1))),
+                             [i for i in range(2, num + 1) if num % i == 0]))
+
+        return result
 
 
 some_num = Copulation()
@@ -67,4 +80,8 @@ print(some_num.factorial(5))
 print(some_num.sum(10))
 print(some_num.test_prim(8))
 print(some_num.test_prims(1, 17))
+some_num.table_mult(2)
+some_num.all_table_mult()
+print(some_num.list_div(24))
+print(some_num.list_div_prim(9990))
 print()

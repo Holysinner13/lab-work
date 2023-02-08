@@ -25,6 +25,11 @@ print(fac(5))
 
 
 def fac(n):
+    """
+    Функция, возвращающая факториал числа
+    :param n: число
+    :return: None
+    """
     if n == 0:
         return 1
     return fac(n - 1) * n

@@ -7,7 +7,7 @@ logger.info('Выполнение задания 3...')
 sleep(2)
 
 
-def fac(n):
+def fac_with_cycle(n):
     """
     Функция, возвращающая факториал числа
     :param n: число
@@ -21,10 +21,7 @@ def fac(n):
     return f'Факториал числа {n} = {result}'
 
 
-print(fac(5))
-
-
-def fac(n):
+def fac_with_recursion(n):
     """
     Функция, возвращающая факториал числа
     :param n: число
@@ -32,7 +29,8 @@ def fac(n):
     """
     if n == 0:
         return 1
-    return fac(n - 1) * n
+    return fac_with_recursion(n - 1) * n
 
 
-print(f'Факториал числа 6 =', fac(6), '\n')
+print(fac_with_cycle(5))
+print(f'Факториал числа 6 =', fac_with_recursion(6), '\n')

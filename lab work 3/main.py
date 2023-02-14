@@ -6,27 +6,27 @@ import keyboard
 def user_enter():
     while True:
         try:
-            num_task = int(input('Введите номер задания (от 1 до 4), ответ которого Вы хотите посмотреть '
-                                 '(для выхода нажмите "q"): '))
+            num_task = int(input('Enter the number of the task (from 1 to 4) whose answer you want to see '
+                                 '(press "q" to exit): '))
         except ValueError:
             if keyboard.read_key('q'):
                 goodbye()
-            print('Ошибка. Введите число.')
+            print('Error. Enter the number.')
             continue
 
         if num_task < 0:
-            print('Ошибка ввода. Число должно быть больше 0.')
+            print('Input Error. The number must be greater than 0.')
         elif num_task > 4:
-            print('В каталоге только 4 задания. Введите число от 1 до 4.')
+            print('There are only 4 tasks in the catalog. Enter a number from 1 to 4.')
         else:
             runpy.run_module(mod_name=f'task{num_task}')
 
 
 def goodbye() -> None:
     """
-    Выводит сообщение при выходе и завершает
+    Displays a message on exit and exits
     """
-    logger.info('Завершение')
+    logger.info('End')
     exit()
 
 

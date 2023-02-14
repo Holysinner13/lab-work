@@ -3,20 +3,20 @@ from time import sleep
 from tkinter import *
 
 
-"""Задание 1"""
-logger.info('Выполнение задания 1...')
+"""Exercise 1"""
+logger.info('Completing task 1...')
 sleep(2)
 
 
 class BankAccount:
-    """Класс, который представляет банковский счет"""
+    """A class, that represents a bank account"""
 
     def __init__(self, account_number, name, balance):
         """
-        Инициализация переменных класса
-        :param account_number: номер аккаунта владельца
-        :param name: имя владельца счета в виде строкового типа
-        :param balance: баланс владельца счета
+        Initializing class variables
+        :param account_number: owner account number
+        :param name: account holder name as a string type
+        :param balance: account holder's balance
         :return
         """
         self.account_number = account_number
@@ -24,27 +24,27 @@ class BankAccount:
         self.balance = balance
 
     def deposit(self, summa):
-        """Метод, который управляет действиями по депозиту"""
+        """Method, that manages deposit actions"""
         self.balance += summa
-        return f'Сумма внесения {summa}. Текущий баланс {self.balance}'
+        return f'Deposit amount {summa}. Current balance {self.balance}'
 
     def withdrawal(self, summa):
-        """Метод, который управляет действиями по снятию средств"""
+        """Method, that manages withdrawal actions"""
         if summa > self.balance:
-            exit('Недостаточно средств')
+            exit('Insufficient funds')
         self.balance = self.balance - summa
-        return f'Сумма списания {summa}. Текущий баланс {self.balance}'
+        return f'Write-off amount {summa}. Current balance {self.balance}'
 
     def bank_fes(self, ):
-        """Метод для применения банковских комиссий в размере 5% от баланса счета"""
+        """Method for applying bank charges in the amount of 5% of the account balance"""
         self.balance += self.balance * 0.05
         return f'Баланс с учетом комиссии равен {self.balance}'
 
     def display(self):
-        """Метод для отображения сведений об учетной записи"""
-        total = f'Имя владельца счета {self.name}\n,' \
-                f'Номер аккаунта владельца {self.account_number}\n,' \
-                f'Баланс {self.balance}'
+        """Method to display account information"""
+        total = f'Account holder name {self.name}\n,' \
+                f'Owner account number {self.account_number}\n,' \
+                f'Balance {self.balance}'
         print(total)
         return total
 
@@ -66,12 +66,12 @@ def decorator_info(func, bank_account, lbl):
 
 
 window = Tk()
-window.title("Самый полезный банк")
+window.title("Most Helpful Bank")
 window.geometry('600x400')
-lbl = Label(window, text="Выберите тип операции", font=("Arial Bold", 30))
+lbl = Label(window, text="Select operation type", font=("Arial Bold", 30))
 lbl_2 = Label(window, text="", font=("Arial Bold", 30))
 update_info = decorator_info(set_text, bank, lbl_2)
-btn = Button(window, text="Информация о карте", bg='green', fg='white', command=update_info)
+btn = Button(window, text="Credit card information", bg='green', fg='white', command=update_info)
 
 lbl.grid(column=0, row=0)
 btn.grid(column=0, row=1)

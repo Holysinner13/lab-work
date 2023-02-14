@@ -11,10 +11,9 @@ sleep(2)
 
 print('Произвести рефакторинг программы')
 sentence = 'i am@Python@senior^pomidor'
-c = ''.join(c if c not in string.punctuation else ' ' for c in sentence)
-s = ''.join(filter(lambda x: x not in string.punctuation, sentence))
-# не могу понять как добавить в filter замену на" "
-d = re.sub(r'[\W]', ' ', sentence)
+c = ''.join(i if i not in string.punctuation else ' ' for i in sentence)
+s = ''.join(list(map(lambda x: x if x not in string.punctuation else " ", sentence)))
+d = re.sub(r'\W', ' ', sentence)
 
 
 print(c)

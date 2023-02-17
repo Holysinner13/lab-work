@@ -11,7 +11,7 @@ sleep(2)
 class BankAccount:
     """A class, that represents a bank account"""
 
-    def __init__(self, account_number, name, balance):
+    def __init__(self, balance: float | int, name: str, account_number: int):
         """
         Initializing class variables
         :param account_number: owner account number

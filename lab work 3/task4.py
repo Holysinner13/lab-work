@@ -25,6 +25,13 @@ class Vector:
     def __len__(self):
         return math.sqrt(self.x**2 + self.y**2)
 
+    def __add__(self, other):
+        result = Vector(self.x + other.x, self.y + other.y)
+        return result
+
+    def __lt__(self, other):
+        pass
+
 
 vector = Vector(3, 4)
 print(vector.__len__())

@@ -1,6 +1,16 @@
 from loguru import logger
 import runpy
 import keyboard
+from dotenv import load_dotenv, find_dotenv
+import os
+
+
+if not find_dotenv():
+    exit('Переменные окружения не загружены т.к отсутствует файл .env')
+else:
+    load_dotenv()
+    SECRET_KEY = os.environ.get("SECRET_KEY")
+    DATABASE_PASSWORD = os.environ.get("DATABASE_PASSWORD")
 
 
 def user_enter():

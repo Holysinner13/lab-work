@@ -4,6 +4,7 @@
 * loguru==0.6.0
 * numpy==1.24.1
 * keyboard==0.13.5
+* python-dotenv==0.21.0
 
 Вы можете установить все зависимости, выполнив следующую команду: `pip install -r requirements.txt`
 

@@ -30,8 +30,12 @@ class Vector:
         return result
 
     def __lt__(self, other):
-        pass
+        return self.x < other.x or self.x == other.x and self.y < other.y
 
 
 vector = Vector(3, 4)
-print(vector.__len__())
+vector2 = Vector(1, 1)
+vector3 = vector + vector2
+print(vector3.x, vector3.y)
+print(vector > vector2)
+print(vector3 < vector)

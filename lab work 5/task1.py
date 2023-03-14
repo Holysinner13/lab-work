@@ -14,26 +14,26 @@ def get_img():
 
     response = requests.get(url)
     if response.status_code == 200:
-        with open(f'cat.jpg', 'wb') as file:
+        with open(f'distr/cat.jpg', 'wb') as file:
             file.write(response.content)
 
 
 msg = 'Хочешь скачать картинку котика?:) '
 title = 'Милота от котиков'
-out = ccbox(msg, title, image='hello.jpeg', choices=['да', 'нет'])
+out = ccbox(msg, title, image='distr/hello.jpeg', choices=['да', 'нет'])
 
 while True:
     try:
         if out:
             get_img()
             msg = 'Держи-лови милоту\n\nЕще хочешь? :)'
-            title = 'Мимишно'
-            answer = ccbox(msg, title, image='cat.jpg', choices=['да', 'нет'])
+            title = 'Мимимишно'
+            answer = ccbox(msg, title, image='distr/cat.jpg', choices=['да', 'нет'])
             if answer:
                 continue
             else:
                 break
         else:
             break
-    except BaseException:
-        print('Ошибка. Что-то пошло не так.')
+    except Exception as error:
+        print(f'Ошибка {error}. Что-то пошло не так.')

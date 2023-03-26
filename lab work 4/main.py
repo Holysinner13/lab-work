@@ -6,7 +6,7 @@ import os
 
 
 if not find_dotenv():
-    exit('Переменные окружения не загружены т.к отсутствует файл .env')
+    exit('Environment variables not loaded because file is missing .env')
 else:
     load_dotenv()
     SECRET_KEY = os.environ.get("SECRET_KEY")
@@ -26,6 +26,7 @@ def user_enter():
 
         print('But no, there is only one task in this module, and it will be launched.')
         runpy.run_module(mod_name=f'task1')
+        print()
 
 
 def goodbye() -> None:

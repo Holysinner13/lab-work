@@ -12,6 +12,6 @@ sleep(2)
 
 
 class Custom:
-    """Класс таможня"""
+    """Class customs"""
     def __init__(self):
         pass

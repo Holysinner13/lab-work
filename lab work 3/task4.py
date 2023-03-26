@@ -33,9 +33,13 @@ class Vector:
         return self.x < other.x or self.x == other.x and self.y < other.y
 
 
-vector = Vector(3, 4)
-vector2 = Vector(1, 1)
-vector3 = vector + vector2
-print(vector3.x, vector3.y)
-print(vector > vector2)
-print(vector3 < vector)
+def main():
+    vector = Vector(3, 4)
+    vector2 = Vector(1, 1)
+    vector3 = vector + vector2
+    print(vector3.x, vector3.y)
+    print(vector > vector2)
+    print(vector3 < vector)
+
+
+main()

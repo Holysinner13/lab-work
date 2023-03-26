@@ -42,11 +42,14 @@ class Circle:
         return False
 
 
-circle = Circle(1, 0, 0)
-print(f'The area of the circle is {round(circle.area(), 2)}')
-print(f'The perimeter of the circle is {round(circle.perimeter(), 2)}')
-point = 2
-point_1 = 2
-print(f'point A with coordinates {point, point_1} %s to circle C with radius {circle.radius}'
-      % ('belongs' if circle.test_belongs(point, point_1) else 'does not belong'))
-print()
+def main():
+    circle = Circle(1, 0, 0)
+    print(f'The area of the circle is {round(circle.area(), 2)}')
+    print(f'The perimeter of the circle is {round(circle.perimeter(), 2)}')
+    point = 2
+    point_1 = 2
+    print(f'point A with coordinates {point, point_1} %s to circle C with radius {circle.radius}'
+          % ('belongs' if circle.test_belongs(point, point_1) else 'does not belong'))
+
+
+main()

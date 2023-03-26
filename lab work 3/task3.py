@@ -72,31 +72,34 @@ class Copulation:
         return result
 
 
-some_num = Copulation()
-print(some_num.__doc__, '\n')
+def main():
+    some_num = Copulation()
+    print(some_num.__doc__, '\n')
 
-fac_num = 5
-print(f'Factorial of a number {fac_num} = {some_num.factorial(fac_num)}')
+    fac_num = 5
+    print(f'Factorial of a number {fac_num} = {some_num.factorial(fac_num)}')
 
-num_sum = 10
-print(f'The sum of the first integers from 1 to {num_sum} is {int(some_num.sum(num_sum))}')
+    num_sum = 10
+    print(f'The sum of the first integers from 1 to {num_sum} is {int(some_num.sum(num_sum))}')
 
-num_test_prime = 11
-print(f'Number {num_test_prime} - %s' % ('prime number' if some_num.test_prim(num_test_prime) else 'not prime'))
+    num_test_prime = 11
+    print(f'Number {num_test_prime} - %s' % ('prime number' if some_num.test_prim(num_test_prime) else 'not prime'))
 
-num_1_test_prims = 1
-num_2_test_prims = 17
-print(f'Prime numbers in the range '
-      f'{num_1_test_prims} to {num_2_test_prims} - {some_num.test_prims(num_1_test_prims, num_2_test_prims)}')
+    num_1_test_prims = 1
+    num_2_test_prims = 17
+    print(f'Prime numbers in the range '
+          f'{num_1_test_prims} to {num_2_test_prims} - {some_num.test_prims(num_1_test_prims, num_2_test_prims)}')
 
-num_table_mult = 2
-print(f'Multiplication table of number {num_table_mult}')
-some_num.table_mult(num_table_mult)
+    num_table_mult = 2
+    print(f'Multiplication table of number {num_table_mult}')
+    some_num.table_mult(num_table_mult)
 
-print('Multiplication table for all numbers from 1 to 9')
-some_num.all_table_mult()
+    print('Multiplication table for all numbers from 1 to 9')
+    some_num.all_table_mult()
 
-print(some_num.list_div(24))
+    print(some_num.list_div(24))
 
-print(some_num.list_div_prim(9990))
-print()
+    print(some_num.list_div_prim(9990))
+
+
+main()

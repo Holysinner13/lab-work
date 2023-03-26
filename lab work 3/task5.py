@@ -29,13 +29,17 @@ class MyString(str):
         return del_item
 
 
-some_string = MyString()
-some_string.get_str = 'Пиво'
-some_string.get_str = 'Чипсы'
-some_string.get_str = 'Раки'
-some_string.get_str = 'Ничего'
-print(some_string.get_str)
-some_string.del_str(2)
-print(some_string.get_str)
-print(some_string.del_str(1))
-print(some_string.get_str)
+def main():
+    some_string = MyString()
+    some_string.get_str = 'Пиво'
+    some_string.get_str = 'Чипсы'
+    some_string.get_str = 'Раки'
+    some_string.get_str = 'Ничего'
+    print(some_string.get_str)
+    some_string.del_str(2)
+    print(some_string.get_str)
+    print(some_string.del_str(1))
+    print(some_string.get_str)
+
+
+main()

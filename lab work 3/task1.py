@@ -1,6 +1,5 @@
 from main import logger
 from time import sleep
-from tkinter import *
 
 
 """Exercise 1"""
@@ -48,15 +47,18 @@ class BankAccount:
         return total
 
 
-bank = BankAccount(12, 'Andrew', 5000)
+def main():
+    bank = BankAccount(12, 'Andrew', 5000)
 
-deposit_summa = 25000
-print(f'Deposit amount {deposit_summa}. Current balance {bank.deposit(deposit_summa)}')
+    deposit_summa = 25000
+    print(f'Deposit amount {deposit_summa}. Current balance {bank.deposit(deposit_summa)}')
 
-withdrawal_summa = 10000
-print(f'Write-off amount {withdrawal_summa}. Current balance {bank.withdrawal(withdrawal_summa)}')
+    withdrawal_summa = 10000
+    print(f'Write-off amount {withdrawal_summa}. Current balance {bank.withdrawal(withdrawal_summa)}')
 
-print(f'Баланс с учетом комиссии равен {bank.bank_fes()}')
+    print(f'Баланс с учетом комиссии равен {bank.bank_fes()}')
 
-print(bank.display())
-print()
+    print(bank.display())
+
+
+main()

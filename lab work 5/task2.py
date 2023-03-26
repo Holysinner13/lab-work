@@ -6,8 +6,8 @@ import json
 import datetime
 
 
-"""Задание 2"""
-logger.info('Выполнение задания 2...')
+"""Exercise 2"""
+logger.info('Completing task 2...')
 sleep(2)
 
 
@@ -41,21 +41,25 @@ def get_holiday(year, country_code):
             f.write(result)
 
 
-while True:
-    title = 'Календарь праздников по странам'
-    msg_1 = 'Выберите страну, в которой хотите посмотреть праздники'
-    country_answer = choicebox(msg_1, title, choices=get_available_country())
+def main():
+    while True:
+        title = 'Holiday calendar by country'
+        msg_1 = 'Select the country in which you want to view the holidays'
+        country_answer = choicebox(msg_1, title, choices=get_available_country())
 
-    msg_2 = 'Введите год, в котором хотите посмотреть праздники'
-    some_year = integerbox(msg_2, title, upperbound=datetime.datetime.now().year)
+        msg_2 = 'Enter the year in which you want to view the holidays'
+        some_year = integerbox(msg_2, title, upperbound=datetime.datetime.now().year)
 
-    get_holiday(some_year, country_answer[:2])
-    msg_3 = f'Все праздники в {some_year} году в {country_answer[5:]}'
-    with open('./distr/holiday.txt', 'r') as file:
-        textbox(msg_3, title, text=file.read())
+        get_holiday(some_year, country_answer[:2])
+        msg_3 = f'All holidays in {some_year} in {country_answer[5:]}'
+        with open('./distr/holiday.txt', 'r') as file:
+            textbox(msg_3, title, text=file.read())
 
-    msg_4 = 'Посмотрим еще?'
-    return_answer = ynbox(msg_4, title,)
-    if return_answer:
-        continue
-    break
+        msg_4 = "Let's see again?"
+        return_answer = ynbox(msg_4, title,)
+        if return_answer:
+            continue
+        break
+
+
+main()

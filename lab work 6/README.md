@@ -4,6 +4,7 @@
 * loguru==0.6.0
 * python-dotenv==0.21.0
 * requests==2.28.2
+* pandas==1.5.3
 
 Вы можете установить все зависимости, выполнив следующую команду: `pip install -r requirements.txt`
 

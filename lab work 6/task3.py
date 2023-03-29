@@ -2,8 +2,8 @@ from main import logger
 from time import sleep
 
 
-"""Задание 3"""
-logger.info('Выполнение задания 3...')
+"""Exercise 3"""
+logger.info('Completing task 3...')
 sleep(2)
 
 

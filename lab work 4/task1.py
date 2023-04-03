@@ -5,11 +5,28 @@ from abc import ABC, abstractmethod
 import logging
 import logging.handlers
 from pathlib import *
+import bcrypt
 
 
 """Exercise 1"""
 logger.info('Completing task 1...')
 sleep(2)
+
+
+def check_pwd():
+    password = 'Admin'
+    password = password.encode('utf-8')
+    hashed = bcrypt.hashpw(password, bcrypt.gensalt(10))
+
+    check = str(input('Input password: '))
+    check = check.encode('utf-8')
+
+    if bcrypt.checkpw(check, hashed):
+        print('Login successfully')
+        return True
+    else:
+        print('Password invalid.')
+        return False
 
 
 logging.basicConfig(
@@ -39,22 +56,19 @@ class AbstractCustoms(ABC):
 class AirCustoms(AbstractCustoms):
     """Air customs class"""
     logging.info(f'Class Air customs instance created')
-
-    def __init__(self) -> None:
-        self.person_registration_info = {}
+    PERSON_REGISTRATION_INFO = {}
 
     def add_person_registration(self, name: str):
         """Method that adds air border crossing information for the current date"""
         logging.info(f'Adding border crossing information - {name} {datetime.datetime.today()}')
-        self.person_registration_info.update({name: datetime.datetime.today().strftime("%d.%m.%Y")})
+        AirCustoms.PERSON_REGISTRATION_INFO.update({name: datetime.datetime.today().strftime("%d.%m.%Y")})
 
     def show_border_list(self):
         """Method that returns information about who has crossed the air border"""
         logging.info('The entire list of those who crossed the air border')
-        if self.person_registration_info:
-            for i in self.person_registration_info:
-                print(i)
-                print(self.person_registration_info)
+        if AirCustoms.PERSON_REGISTRATION_INFO:
+            if check_pwd():
+                print(AirCustoms.PERSON_REGISTRATION_INFO)
 
     def show_list_border_date(self, border_crossing_date):
         """"""
@@ -65,21 +79,20 @@ class AirCustoms(AbstractCustoms):
 class LandCustoms(AbstractCustoms):
     """Land customs class"""
     logging.info(f'Class Land customs instance created')
-
-    def __init__(self) -> None:
-        self.person_registration_info = {}
+    PERSON_REGISTRATION_INFO = {}
 
     def add_person_registration(self, name: str):
         """Method that adds land border crossing information for the current date"""
         logging.info(f'Adding border crossing information - {name} {datetime.datetime.today()}')
-        self.person_registration_info.update({name: datetime.datetime.today().strftime("%d.%m.%Y")})
+        LandCustoms.PERSON_REGISTRATION_INFO.update({name: datetime.datetime.today().strftime("%d.%m.%Y")})
 
     def show_border_list(self):
         """Method that returns information about who has crossed the land border"""
         logging.info('The entire list of those who crossed the land border')
-        if self.person_registration_info:
-            for i in self.person_registration_info:
-                print(i)
+
+        if LandCustoms.PERSON_REGISTRATION_INFO:
+            if check_pwd():
+                print(LandCustoms.PERSON_REGISTRATION_INFO)
 
     def show_list_border_date(self, border_crossing_date):
         """"""

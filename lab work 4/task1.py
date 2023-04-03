@@ -6,35 +6,13 @@ import logging
 import logging.handlers
 from pathlib import *
 import bcrypt
+from tkinter import *
+from tkinter import ttk
 
 
 """Exercise 1"""
 logger.info('Completing task 1...')
 sleep(2)
-
-
-def check_pwd():
-    password = 'Admin'
-    password = password.encode('utf-8')
-    hashed = bcrypt.hashpw(password, bcrypt.gensalt(10))
-
-    check = str(input('Input password: '))
-    check = check.encode('utf-8')
-
-    if bcrypt.checkpw(check, hashed):
-        print('Login successfully')
-        return True
-    else:
-        print('Password invalid.')
-        return False
-
-
-logging.basicConfig(
-    level=logging.DEBUG,
-    filename="mylog.log",
-    format="%(asctime)s - %(module)s - %(levelname)s - %(funcName)s: %(lineno)d - %(message)s",
-    datefmt='%H:%M:%S',
-    )
 
 
 class AbstractCustoms(ABC):
@@ -70,10 +48,11 @@ class AirCustoms(AbstractCustoms):
             if check_pwd():
                 print(AirCustoms.PERSON_REGISTRATION_INFO)
 
-    def show_list_border_date(self, border_crossing_date):
-        """"""
-        logging.info('')
-        pass
+    def show_list_border_date(self, border_crossing_date: str):
+        """Method that displays information about who crossed the air border on a specific date"""
+        logging.info(f'Requested information on who crossed the land border on {border_crossing_date}')
+        return [(key, ':', value) for key, value in AirCustoms.PERSON_REGISTRATION_INFO.items()
+                if value == border_crossing_date]
 
 
 class LandCustoms(AbstractCustoms):
@@ -94,21 +73,68 @@ class LandCustoms(AbstractCustoms):
             if check_pwd():
                 print(LandCustoms.PERSON_REGISTRATION_INFO)
 
-    def show_list_border_date(self, border_crossing_date):
-        """"""
-        logging.info('')
-        pass
+    def show_list_border_date(self, border_crossing_date: str):
+        """Method that displays information about who crossed the land border on a specific date"""
+        logging.info(f'Requested information on who crossed the land border on {border_crossing_date}')
+        return [(key, ':', value) for key, value in LandCustoms.PERSON_REGISTRATION_INFO.items()
+                if value == border_crossing_date]
+
+
+def check_pwd():
+    password = 'Admin'
+    password = password.encode('utf-8')
+    hashed = bcrypt.hashpw(password, bcrypt.gensalt(10))
+
+    check = str(input('Input password: '))
+    check = check.encode('utf-8')
+
+    if bcrypt.checkpw(check, hashed):
+        print('Login successfully')
+        return True
+    else:
+        print('Password invalid.')
+        return False
+
+
+logging.basicConfig(
+    level=logging.DEBUG,
+    filename="mylog.log",
+    format="%(asctime)s - %(module)s - %(levelname)s - %(funcName)s: %(lineno)d - %(message)s",
+    datefmt='%H:%M:%S',
+    )
 
 
 def main():
     while True:
         try:
+
+            #
+            # greeting = tk.Button(text="Welcome, this is customs Matamoros",
+            #                      foreground='white', background='black', width=40, height=10)
+            # greeting.pack()
+
+            root = Tk()
+            root.title("Welcome, this is customs Matamoros")
+            root.geometry("500x300")
+
+            entry = ttk.Entry()
+            entry.pack(anchor=NW, padx=6, pady=6)
+
+            btn = ttk.Button(text="Click")
+            btn.pack(anchor=NW, padx=6, pady=6)
+
+            label = ttk.Label()
+            label.pack(anchor=NW, padx=6, pady=6)
+
+            root.mainloop()
             name = input('Введите имя: ')
             border = input('Введите вид границы: ')
             if border.lower() == 'air':
                 air_border_person = AirCustoms()
                 air_border_person.add_person_registration(name)
                 air_border_person.show_border_list()
+                border_date = input('Enter the date of border crossing: ')
+                air_border_person.show_list_border_date(border_date)
             elif border.lower() == 'land':
                 land_border_person = LandCustoms()
                 land_border_person.add_person_registration(name)

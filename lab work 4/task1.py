@@ -107,12 +107,6 @@ logging.basicConfig(
 def main():
     while True:
         try:
-
-            #
-            # greeting = tk.Button(text="Welcome, this is customs Matamoros",
-            #                      foreground='white', background='black', width=40, height=10)
-            # greeting.pack()
-
             root = Tk()
             root.title("Welcome, this is customs Matamoros")
             root.geometry("500x300")

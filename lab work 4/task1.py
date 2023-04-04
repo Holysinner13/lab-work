@@ -4,8 +4,8 @@ from time import sleep
 from abc import ABC, abstractmethod
 import logging
 import logging.handlers
-from pathlib import *
 import bcrypt
+import os
 from tkinter import *
 from tkinter import ttk
 
@@ -38,6 +38,7 @@ class AirCustoms(AbstractCustoms):
 
     def add_person_registration(self, name: str):
         """Method that adds air border crossing information for the current date"""
+        logging_customs()
         logging.info(f'Adding border crossing information - {name} {datetime.datetime.today()}')
         AirCustoms.PERSON_REGISTRATION_INFO.update({name: datetime.datetime.today().strftime("%d.%m.%Y")})
 
@@ -96,31 +97,41 @@ def check_pwd():
         return False
 
 
-logging.basicConfig(
-    level=logging.DEBUG,
-    filename="mylog.log",
-    format="%(asctime)s - %(module)s - %(levelname)s - %(funcName)s: %(lineno)d - %(message)s",
-    datefmt='%H:%M:%S',
-    )
+def logging_customs():
+    log_left = logging.getLogger()
+    log_left.setLevel(logging.DEBUG)
+    os.mkdir('log_customs')
+    fh_left = logging.FileHandler("log_customs/customs_info.log")
+    basic_format_left = logging.Formatter('%(asctime)s : [%(levelname)s] : %(message)s')
+    fh_left.setFormatter(basic_format_left)
+    log_left.addHandler(fh_left)
+
+    log_right = logging.getLogger()
+    log_right.setLevel(logging.DEBUG)
+    os.mkdir('copy_log_customs')
+    fh_right = logging.FileHandler("copy_log_customs/copy_customs_info.log")
+    basic_format_right = logging.Formatter('%(asctime)s : [%(levelname)s] : %(message)s')
+    fh_right.setFormatter(basic_format_right)
+    log_right.addHandler(fh_right)
 
 
 def main():
     while True:
         try:
-            root = Tk()
-            root.title("Welcome, this is customs Matamoros")
-            root.geometry("500x300")
-
-            entry = ttk.Entry()
-            entry.pack(anchor=NW, padx=6, pady=6)
-
-            btn = ttk.Button(text="Click")
-            btn.pack(anchor=NW, padx=6, pady=6)
-
-            label = ttk.Label()
-            label.pack(anchor=NW, padx=6, pady=6)
-
-            root.mainloop()
+            # root = Tk()
+            # root.title("Welcome, this is customs Matamoros")
+            # root.geometry("500x300")
+            #
+            # entry = ttk.Entry()
+            # entry.pack(anchor=NW, padx=6, pady=6)
+            #
+            # btn = ttk.Button(text="Click")
+            # btn.pack(anchor=NW, padx=6, pady=6)
+            #
+            # label = ttk.Label()
+            # label.pack(anchor=NW, padx=6, pady=6)
+            #
+            # root.mainloop()
             name = input('Введите имя: ')
             border = input('Введите вид границы: ')
             if border.lower() == 'air':
@@ -135,11 +146,6 @@ def main():
                 land_border_person.show_border_list()
         except BaseException as error:
             print(f'Unexpected error: {error}')
-        finally:
-            # print('Для выхода нажмите q, для продолжения n')
-            # if keyboard.read_key('q'):
-            #     exit()
-            continue
 
 
 main()

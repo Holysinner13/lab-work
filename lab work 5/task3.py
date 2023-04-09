@@ -1,7 +1,11 @@
+import time
+
 from main import logger
 from time import sleep
 import requests
 from bs4 import BeautifulSoup
+from selenium import webdriver
+from selenium.webdriver.chrome.service import Service
 
 
 """Задание 3"""
@@ -10,14 +14,23 @@ sleep(2)
 
 
 def get_film():
+    driver = webdriver.Chrome(
+        service=Service('distr/chromedriver.exe')
+    )
     url = 'https://kinogo.biz/istoricheskie'
 
-    response = requests.get(url)
-    html = BeautifulSoup(response.content, 'html.parser')
+    try:
+        driver.get(url=url)
+        time.sleep(3)
+    except Exception as _ex:
+        print(_ex)
+    finally:
+        driver.close()
+        driver.quit()
 
-    with open('test.txt', 'w', encoding='utf-8') as f:
-        ad = html.find('div', class_='shortstory__title')
-        f.write(ad)
+
+def main():
+    get_film()
 
 
-get_film()
+main()

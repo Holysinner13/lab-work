@@ -52,8 +52,11 @@ class AirCustoms(AbstractCustoms):
     def show_list_border_date(self, border_crossing_date: str):
         """Method that displays information about who crossed the air border on a specific date"""
         logging.info(f'Requested information on who crossed the land border on {border_crossing_date}')
-        return [(key, ':', value) for key, value in AirCustoms.PERSON_REGISTRATION_INFO.items()
-                if value == border_crossing_date]
+        count_border_crossing = 0
+        for k, v in AirCustoms.PERSON_REGISTRATION_INFO.items():
+            if v == border_crossing_date:
+                count_border_crossing += 1
+        return count_border_crossing
 
 
 class LandCustoms(AbstractCustoms):
@@ -77,8 +80,11 @@ class LandCustoms(AbstractCustoms):
     def show_list_border_date(self, border_crossing_date: str):
         """Method that displays information about who crossed the land border on a specific date"""
         logging.info(f'Requested information on who crossed the land border on {border_crossing_date}')
-        return [(key, ':', value) for key, value in LandCustoms.PERSON_REGISTRATION_INFO.items()
-                if value == border_crossing_date]
+        count_border_crossing = 0
+        for k, v in AirCustoms.PERSON_REGISTRATION_INFO.items():
+            if v == border_crossing_date:
+                count_border_crossing += 1
+        return count_border_crossing
 
 
 def check_pwd():
@@ -100,7 +106,6 @@ def check_pwd():
 def logging_customs():
     log_left = logging.getLogger()
     log_left.setLevel(logging.DEBUG)
-    os.mkdir('log_customs')
     fh_left = logging.FileHandler("log_customs/customs_info.log")
     basic_format_left = logging.Formatter('%(asctime)s : [%(levelname)s] : %(message)s')
     fh_left.setFormatter(basic_format_left)
@@ -108,7 +113,6 @@ def logging_customs():
 
     log_right = logging.getLogger()
     log_right.setLevel(logging.DEBUG)
-    os.mkdir('copy_log_customs')
     fh_right = logging.FileHandler("copy_log_customs/copy_customs_info.log")
     basic_format_right = logging.Formatter('%(asctime)s : [%(levelname)s] : %(message)s')
     fh_right.setFormatter(basic_format_right)
@@ -139,11 +143,15 @@ def main():
                 air_border_person.add_person_registration(name)
                 air_border_person.show_border_list()
                 border_date = input('Enter the date of border crossing: ')
-                air_border_person.show_list_border_date(border_date)
+                print(f'Number of people who crossed the border {border_date} - ',
+                      air_border_person.show_list_border_date(border_date))
             elif border.lower() == 'land':
                 land_border_person = LandCustoms()
                 land_border_person.add_person_registration(name)
                 land_border_person.show_border_list()
+                border_date = input('Enter the date of border crossing: ')
+                print(f'Number of people who crossed the border {border_date} - ',
+                      land_border_person.show_list_border_date(border_date))
         except BaseException as error:
             print(f'Unexpected error: {error}')
 

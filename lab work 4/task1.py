@@ -1,13 +1,12 @@
 import datetime
+from dotenv import load_dotenv
+import os
 from main import logger
 from time import sleep
 from abc import ABC, abstractmethod
 import logging
 import logging.handlers
 import bcrypt
-import os
-from tkinter import *
-from tkinter import ttk
 
 
 """Exercise 1"""
@@ -19,77 +18,92 @@ class AbstractCustoms(ABC):
     """Abstract class"""
 
     @abstractmethod
-    def add_person_registration(self, name: str):
+    def person_registration(self, name: str):
         pass
 
     @abstractmethod
-    def show_border_list(self):
+    def show_crossing_border_list(self):
         pass
 
     @abstractmethod
-    def show_list_border_date(self, border_crossing_date):
+    def show_list_who_crossed_border_date(self, border_crossing_date):
         pass
 
 
 class AirCustoms(AbstractCustoms):
     """Air customs class"""
     logging.info(f'Class Air customs instance created')
-    PERSON_REGISTRATION_INFO = {}
+    person_registration_info = {}
 
-    def add_person_registration(self, name: str):
+    def person_registration(self, name: str):
         """Method that adds air border crossing information for the current date"""
-        logging_customs()
-        logging.info(f'Adding border crossing information - {name} {datetime.datetime.today()}')
-        AirCustoms.PERSON_REGISTRATION_INFO.update({name: datetime.datetime.today().strftime("%d.%m.%Y")})
+        logging.info(f'Adding border crossing information - {datetime.datetime.today()}: {name}')
+        if datetime.datetime.today().strftime("%d.%m.%Y") in AirCustoms.person_registration_info.keys():
+            AirCustoms.person_registration_info.get(datetime.datetime.today().strftime("%d.%m.%Y")).append(name)
+        else:
+            AirCustoms.person_registration_info[datetime.datetime.today().strftime("%d.%m.%Y")] = [name]
 
-    def show_border_list(self):
+    def show_crossing_border_list(self):
         """Method that returns information about who has crossed the air border"""
         logging.info('The entire list of those who crossed the air border')
-        if AirCustoms.PERSON_REGISTRATION_INFO:
-            if check_pwd():
-                print(AirCustoms.PERSON_REGISTRATION_INFO)
+        if AirCustoms.person_registration_info:
+            return AirCustoms.person_registration_info
 
-    def show_list_border_date(self, border_crossing_date: str):
+    def show_list_who_crossed_border_date(self, border_crossing_date: str):
         """Method that displays information about who crossed the air border on a specific date"""
         logging.info(f'Requested information on who crossed the land border on {border_crossing_date}')
-        count_border_crossing = 0
-        for k, v in AirCustoms.PERSON_REGISTRATION_INFO.items():
-            if v == border_crossing_date:
-                count_border_crossing += 1
-        return count_border_crossing
+        for k, v in AirCustoms.person_registration_info.items():
+            if k == border_crossing_date:
+                return len(v)
 
 
 class LandCustoms(AbstractCustoms):
     """Land customs class"""
     logging.info(f'Class Land customs instance created')
-    PERSON_REGISTRATION_INFO = {}
+    person_registration_info = {}
 
-    def add_person_registration(self, name: str):
+    def person_registration(self, name: str):
         """Method that adds land border crossing information for the current date"""
         logging.info(f'Adding border crossing information - {name} {datetime.datetime.today()}')
-        LandCustoms.PERSON_REGISTRATION_INFO.update({name: datetime.datetime.today().strftime("%d.%m.%Y")})
+        if datetime.datetime.today().strftime("%d.%m.%Y") in LandCustoms.person_registration_info.keys():
+            AirCustoms.person_registration_info.get(datetime.datetime.today().strftime("%d.%m.%Y")).append(name)
+        else:
+            LandCustoms.person_registration_info[datetime.datetime.today().strftime("%d.%m.%Y")] = [name]
 
-    def show_border_list(self):
+    def show_crossing_border_list(self):
         """Method that returns information about who has crossed the land border"""
         logging.info('The entire list of those who crossed the land border')
+        if LandCustoms.person_registration_info:
+            return LandCustoms.person_registration_info
 
-        if LandCustoms.PERSON_REGISTRATION_INFO:
-            if check_pwd():
-                print(LandCustoms.PERSON_REGISTRATION_INFO)
-
-    def show_list_border_date(self, border_crossing_date: str):
+    def show_list_who_crossed_border_date(self, border_crossing_date: str):
         """Method that displays information about who crossed the land border on a specific date"""
         logging.info(f'Requested information on who crossed the land border on {border_crossing_date}')
-        count_border_crossing = 0
-        for k, v in AirCustoms.PERSON_REGISTRATION_INFO.items():
-            if v == border_crossing_date:
-                count_border_crossing += 1
-        return count_border_crossing
+        for k, v in LandCustoms.person_registration_info.items():
+            if k == border_crossing_date:
+                return len(v)
 
 
-def check_pwd():
-    password = 'Admin'
-    password = password.encode('utf-8')
+class MyLogger:
+    """Class logging"""
+    def __init__(self, name_log, name_format):
+        self.logger = name_log
+        self.log_format = name_format
+
+    def logged(self, path):
+        self.logger = logging.getLogger()
+        self.logger.setLevel(logging.DEBUG)
+        self.log_format = logging.FileHandler(path)
+        basic_format_left = logging.Formatter('%(asctime)s : [%(levelname)s] : %(message)s')
+        self.log_format.setFormatter(basic_format_left)
+        self.logger.addHandler(self.log_format)
+
+
+def check_password():
+    """Function that checks the admin password"""
+    load_dotenv()
+    password_admin = os.environ.get("ADMIN_PASSWORD")
+    password = password_admin.encode('utf-8')
     hashed = bcrypt.hashpw(password, bcrypt.gensalt(10))
 
     check = str(input('Input password: '))
@@ -103,57 +117,35 @@ def check_pwd():
         return False
 
 
-def logging_customs():
-    log_left = logging.getLogger()
-    log_left.setLevel(logging.DEBUG)
-    fh_left = logging.FileHandler("log_customs/customs_info.log")
-    basic_format_left = logging.Formatter('%(asctime)s : [%(levelname)s] : %(message)s')
-    fh_left.setFormatter(basic_format_left)
-    log_left.addHandler(fh_left)
-
-    log_right = logging.getLogger()
-    log_right.setLevel(logging.DEBUG)
-    fh_right = logging.FileHandler("copy_log_customs/copy_customs_info.log")
-    basic_format_right = logging.Formatter('%(asctime)s : [%(levelname)s] : %(message)s')
-    fh_right.setFormatter(basic_format_right)
-    log_right.addHandler(fh_right)
-
-
 def main():
     while True:
         try:
-            # root = Tk()
-            # root.title("Welcome, this is customs Matamoros")
-            # root.geometry("500x300")
-            #
-            # entry = ttk.Entry()
-            # entry.pack(anchor=NW, padx=6, pady=6)
-            #
-            # btn = ttk.Button(text="Click")
-            # btn.pack(anchor=NW, padx=6, pady=6)
-            #
-            # label = ttk.Label()
-            # label.pack(anchor=NW, padx=6, pady=6)
-            #
-            # root.mainloop()
-            name = input('Введите имя: ')
-            border = input('Введите вид границы: ')
+            name = input('Enter the name of who crosses the border: ')
+            border = input('Enter the type of border(air or land): ')
+            left_log = MyLogger('log_left', 'fh_left')
+            left_log.logged("log_customs/customs_info.log")
+            right_log = MyLogger('log_right', 'fh_right')
+            right_log.logged("copy_log_customs/copy_customs_info.log")
             if border.lower() == 'air':
                 air_border_person = AirCustoms()
-                air_border_person.add_person_registration(name)
-                air_border_person.show_border_list()
-                border_date = input('Enter the date of border crossing: ')
-                print(f'Number of people who crossed the border {border_date} - ',
-                      air_border_person.show_list_border_date(border_date))
+                air_border_person.person_registration(name)
+                if check_password():
+                    for key, value in air_border_person.show_crossing_border_list().items():
+                        print(key, ':', value)
+                    border_date = input('Enter the date of border crossing: ')
+                    print(f'Number of people who crossed the border {border_date} - ',
+                          air_border_person.show_list_who_crossed_border_date(border_date))
             elif border.lower() == 'land':
                 land_border_person = LandCustoms()
-                land_border_person.add_person_registration(name)
-                land_border_person.show_border_list()
-                border_date = input('Enter the date of border crossing: ')
-                print(f'Number of people who crossed the border {border_date} - ',
-                      land_border_person.show_list_border_date(border_date))
-        except BaseException as error:
+                land_border_person.person_registration(name)
+                if check_password():
+                    print(land_border_person.show_crossing_border_list())
+                    border_date = input('Enter the date of border crossing: ')
+                    print(f'Number of people who crossed the border {border_date} - ',
+                          land_border_person.show_list_who_crossed_border_date(border_date))
+        except TypeError as error:
             print(f'Unexpected error: {error}')
+            continue
 
 
 main()

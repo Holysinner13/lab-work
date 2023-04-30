@@ -19,12 +19,30 @@ def get_film_info():
         src = file.read()
 
     soup = BeautifulSoup(src, 'lxml')
-    print(soup)
-    # with open('film_info', 'w+', encoding="utf-8") as file:
-    items_divs = soup.find_all('div', class_='shortstory__title')
-    for item in items_divs:
-        item_title = item.find('h2')
-        print(item_title)
+    films_divs = soup.find_all('div', class_='shortstory__title')
+    list_film_title = []
+    list_film_year = []
+    for film in films_divs:
+        film_info_title = film.find('h2')
+        list_film_title.append(str(film_info_title)[4:-12])
+        list_film_year.append(str(film_info_title)[-10:-6])
+
+    films_divs_country = soup.find_all('div', class_='shortstory__info')
+    # print(films_divs_country)
+    list_films_country = []
+    for film in films_divs_country:
+        country = film.find('<b>')
+        list_films_country.append(country)
+
+    films_divs_info = soup.find_all('div', class_='excerpt')
+    films_info = []
+    for film_info in films_divs_info:
+        films_info.append(film_info.stripped_strings)
+
+    print(list_film_year)
+    print(list_film_title)
+    print(list_films_country)
+    print(films_info)
 
 
 def get_content():

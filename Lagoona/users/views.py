@@ -41,4 +41,4 @@ def error_404(request, exception):
     # response = render(request, '../templates/404/404.html', context=context)
     # response.status_code = 404
     # return response
-    return render(request, '../templates/404/bg404.html')
+    return render(request, '../templates/404/bg404.html', {'path': request.path}, status=404)

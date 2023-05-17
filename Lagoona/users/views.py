@@ -36,9 +36,9 @@ def homepage(request):
 #     success_url = reverse_lazy('users:list')
 
 def error_404(request, exception):
-    # context = {}
-    # context['page_title'] = '404'
-    # response = render(request, '../templates/404/404.html', context=context)
-    # response.status_code = 404
-    # return response
-    return render(request, '../templates/404/bg404.html', {'path': request.path}, status=404)
+    context = {}
+    context['page_title'] = '404'
+    response = render(request, '../templates/404/bg404.html', context=context)
+    response.status_code = 404
+    return response
+    # return render(request, '../templates/404/bg404.html', {'path': request.path}, status=404)

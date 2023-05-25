@@ -26,8 +26,8 @@ SECRET_KEY = 'django-insecure-ii6xcr%x^ktfgt6-iiccs2$=%bidf1c-5y5avmemll!)$0ds_4
 DEBUG = False
 
 ALLOWED_HOSTS = [
-    'localhost',
-    '127.0.0.1'
+    '127.0.0.1',
+    'localhost'
 ]
 
 
@@ -119,6 +119,8 @@ TIME_ZONE = 'UTC'
 USE_I18N = True
 
 USE_TZ = True
+
+STATIC_ROOT = ''
 
 
 # Static files (CSS, JavaScript, Images)

@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from items.models import Category, Items
 from .forms import SignupForm
+from django.contrib.auth.views import LogoutView
 
 
 def index(request):
@@ -28,3 +29,10 @@ def signup(request):
 
 def error_404(request):
     return render(request, '404/404.html', status=404)
+
+
+class UserLogoutView(LogoutView):
+    """
+    Выход с сайта
+    """
+    next_page = '../'

@@ -16,8 +16,6 @@ class LoginForm(AuthenticationForm):
 
 class SignupForm(UserCreationForm):
     email = forms.EmailField(max_length=200, help_text='Required')
-    # first_name = forms.CharField(max_length=100, help_text='Required')
-    # last_name = forms.CharField(max_length=100, help_text='Required')
 
     class Meta:
         model = User

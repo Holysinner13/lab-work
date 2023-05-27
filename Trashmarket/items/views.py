@@ -18,9 +18,9 @@ def items(request):
     if query:
         items = items.filter(Q(name__icontains=query) | Q(description__icontains=query))
 
-    return render(request, '../items/templates/items/items.html', {'items': items, 'query': query,
-                                                                   'categories': categories,
-                                                                   'category_id': int(category_id)})
+    return render(request, 'items/items.html', {'items': items, 'query': query,
+                                                                'categories': categories,
+                                                                'category_id': int(category_id)})
 
 
 def detail(request, pk):
@@ -43,7 +43,7 @@ def new(request):
             return redirect('items:detail', pk=item.id)
     else:
         form = NewItemForm()
-    return render(request, '../items/templates/items/form.html', {'form': form, 'title': 'New item'})
+    return render(request, 'items/form.html', {'form': form, 'title': 'New item'})
 
 
 @login_required
@@ -59,7 +59,7 @@ def edit(request, pk):
     else:
         form = EditItemForm(instance=item)
 
-    return render(request, '../items/templates/items/form.html', {'form': form, 'title': 'Edit item'})
+    return render(request, 'items/form.html', {'form': form, 'title': 'Edit item'})
 
 
 @login_required

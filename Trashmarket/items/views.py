@@ -27,7 +27,7 @@ def detail(request, pk):
     item = get_object_or_404(Items, pk=pk)
     related_items = Items.objects.filter(Category=item.Category, is_sold=False).exclude(pk=pk)[0:3]
 
-    return render(request, '../items/templates/items/detail.html', {'item': item, "related_items": related_items})
+    return render(request, 'detail.html', {'item': item, "related_items": related_items})
 
 
 @login_required

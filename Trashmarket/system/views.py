@@ -1,16 +1,16 @@
 from django.shortcuts import render, redirect
-# from items.models import Category, Items
+from items.models import Category, Items
 from .forms import SignupForm
 
 
-# def index(request):
-#     items = Items.objects.filter(is_sold=False)[0:6]
-#     categories = Category.objects.all()
-#     return render(request, '../system/templates/index.html', {'items': items, 'categories': categories})
-#
+def index(request):
+    items = Items.objects.filter(is_sold=False)[0:6]
+    categories = Category.objects.all()
+    return render(request, 'index.html', {'items': items, 'categories': categories})
+
 
 def contact(request):
-    return render(request, '../system/templates/contact.html')
+    return render(request, 'contact.html')
 
 
 def signup(request):
@@ -23,8 +23,8 @@ def signup(request):
     else:
         form = SignupForm()
 
-    return render(request, '../system/templates/signup.html', {'form': form})
+    return render(request, 'signup.html', {'form': form})
 
 
 def error_404(request, exception):
-    return render(request, '../templates/404/404.html', status=404)
+    return render(request, '404/404.html', status=404)

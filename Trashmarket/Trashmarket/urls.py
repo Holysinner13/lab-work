@@ -21,10 +21,12 @@ from django.urls import path, include
 
 urlpatterns = [
     path('', include('system.urls')),
-    # path('items/', include('items.urls')),
-    # path('dashboard/', include('dashboard.urls')),
-    # path('inbox/', include('conversation.urls')),
+    path('items/', include('items.urls')),
+    path('mainpage/', include('mainpage.urls')),
+    path('chat/', include('chat.urls')),
     path('admin/', admin.site.urls),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+
+handler404 = 'system.views.error_404'

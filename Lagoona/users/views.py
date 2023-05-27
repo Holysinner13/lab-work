@@ -1,6 +1,5 @@
 from django.http import HttpResponse
 from django.template import loader
-from .models import Users
 from .forms import UserRegisterForm, UserLoginForm
 from django.shortcuts import render, redirect
 from django.views.generic import CreateView
@@ -55,26 +54,6 @@ def error_404(request, exception):
     return render(request, '../templates/404/404.html', status=404)
 
 
-# def user_detail(request, user_name):
-#     user = Users.objects.get(username=user_name)
-#     template = loader.get_template('../templates/user/user_detail.html')
-#     context = {
-#         'customer': user
-#     }
-#     return HttpResponse(template.render(context, request))
-#
-#
-# class UserCreateView(CreateView):
-#     model = Users
-#     fields = ['username', 'age']
-#     template_name = 'user/create.html'
-#     success_url = reverse_lazy('users:list')
-
-# def users_view(request):
-#     users = Users.objects.all()
-#     template = loader.get_template('../templates/user/list.html')
-#     context = {
-#         'users': users
-#     }
-#     return HttpResponse(template.render(context, request))
-
+def back(request):
+    template = loader.get_template('../templates/back.html')
+    return HttpResponse(template.render())

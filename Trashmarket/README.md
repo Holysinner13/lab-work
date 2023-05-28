@@ -13,7 +13,7 @@ sqlparse==0.4.4
 tzdata==2023.3
 whitenoise==6.4.0
 
-Вы можете установить все зависимости, выполнив следующую команду: `pip install -r requirements.txt`
+You can install all dependencies by running the whole command:: `pip install -r requirements.txt`
 
 At the end of the bot, you can use the following applications:
 + <u> chat </u> - chat app between users

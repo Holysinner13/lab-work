@@ -14,13 +14,13 @@ class Category(models.Model):
 
 
 class Items(models.Model):
-    Category = models.ForeignKey(Category, related_name='items', on_delete=models.CASCADE)
-    name = models.CharField(max_length=255)
-    description = models.TextField(blank=True, null=True)
-    price = models.FloatField()
-    image = models.ImageField(upload_to='items_images', blank=True, null=True)
-    is_sold = models.BooleanField(default=False)
-    created_by = models.ForeignKey(User, related_name='items', on_delete=models.CASCADE)
+    Category = models.ForeignKey(Category, related_name='items', on_delete=models.CASCADE, verbose_name='Категория')
+    name = models.CharField(max_length=255, verbose_name='Название')
+    description = models.TextField(blank=True, null=True, verbose_name='Описание')
+    price = models.FloatField(verbose_name='Цена')
+    image = models.ImageField(upload_to='items_images', blank=True, null=True, verbose_name='Картинка')
+    is_sold = models.BooleanField(default=False, verbose_name='Продано')
+    created_by = models.ForeignKey(User, related_name='items', on_delete=models.CASCADE, verbose_name='Создано')
     created_at = models.DateTimeField(auto_now_add=True)
 
     class Meta:

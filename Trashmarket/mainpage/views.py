@@ -7,4 +7,4 @@ from items.models import Items
 @login_required
 def index(request):
     items = Items.objects.filter(created_by=request.user)
-    return render(request, 'index.html', {'items': items})
+    return render(request, 'index2.html', {'items': items})

@@ -4,7 +4,7 @@
 
 <head>
   <meta charset="UTF-8">
-  {% block title %} CodePen - 404 Error Page {% endblock title %}
+  {% block title %} We will fix everything soon {% endblock title %}
   <link href="https://fonts.googleapis.com/css?family=Tomorrow&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="{% static 'css/not_found_page.css' %}">
   <script src="{% static 'js/404.js' %}"></script>
@@ -15,7 +15,7 @@
     {% block content %}
         <div class="text">
           <div>ERROR</div>
-          <h1>404</h1>
+          <h3>Oops! This page does not exist yet</h3>
           <hr>
           <div>
               <a style="font-size: 30px" href="{% url 'system:index' %}">Homepage</a>

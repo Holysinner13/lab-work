@@ -4,8 +4,8 @@ from items.models import Items
 
 
 class Chat(models.Model):
-    item = models.ForeignKey(Items, related_name='chat', on_delete=models.CASCADE)
-    members = models.ManyToManyField(User, related_name='chat')
+    item = models.ForeignKey(Items, related_name='chat', on_delete=models.CASCADE, verbose_name='Чат')
+    members = models.ManyToManyField(User, related_name='chat', verbose_name='Участники')
     created_at = models.DateTimeField(auto_now_add=True)
     modified_at = models.DateTimeField(auto_now=True)
 
@@ -14,7 +14,7 @@ class Chat(models.Model):
 
 
 class ChatMessage(models.Model):
-    chat = models.ForeignKey(Chat, related_name='messages', on_delete=models.CASCADE)
-    content = models.TextField()
-    created_at = models.DateTimeField(auto_now_add=True)
+    chat = models.ForeignKey(Chat, related_name='messages', on_delete=models.CASCADE, verbose_name='Чат')
+    content = models.TextField(verbose_name='Сообщение')
+    created_at = models.DateTimeField(auto_now_add=True, verbose_name='Создано')
     created_by = models.ForeignKey(User, related_name='created_messages', on_delete=models.CASCADE)

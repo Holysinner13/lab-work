@@ -27,7 +27,7 @@ def detail(request, pk):
     item = get_object_or_404(Items, pk=pk)
     related_items = Items.objects.filter(Category=item.Category, is_sold=False).exclude(pk=pk)[0:3]
 
-    return render(request, 'detail.html', {'item': item, "related_items": related_items})
+    return render(request, 'items/detail.html', {'item': item, "related_items": related_items})
 
 
 @login_required
@@ -43,7 +43,7 @@ def new(request):
             return redirect('items:detail', pk=item.id)
     else:
         form = NewItemForm()
-    return render(request, 'items/form.html', {'form': form, 'title': 'New item'})
+    return render(request, 'items/form.html', {'form': form, 'title': 'Новая вещь'})
 
 
 @login_required
@@ -59,7 +59,7 @@ def edit(request, pk):
     else:
         form = EditItemForm(instance=item)
 
-    return render(request, 'items/form.html', {'form': form, 'title': 'Edit item'})
+    return render(request, 'items/form.html', {'form': form, 'title': 'Редактировать'})
 
 
 @login_required
